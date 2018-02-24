@@ -69,11 +69,12 @@ public class RequestController {
                 case 0:
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
-                    System.out.println("Here");
+                    
                     response.put("size", tmp.size());
                     int i=0;
                     Iterator<String> it1=tmp.iterator();
                     Iterator<String> it2=tmp2.iterator();
+                    System.out.println("Here");
                     while(it1.hasNext() && it2.hasNext()){
                         JSONObject oIn=new JSONObject();
                         oIn.put("street", it1.next());
