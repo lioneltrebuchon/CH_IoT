@@ -12,16 +12,16 @@ public class Device
     private int indexDevice;
 
     // Clé étrangère
-    @OneToMany
-    @JoinColumn(name="`indexSensor`")
-    private Sensor indexSensor;
+    @OneToOne
+    @JoinColumn(name="`indexObject`")
+    private Object indexObject;
 
-    public Sensor getIndexSensor() {
-        return indexSensor;
+    public Object getIndexObject() {
+        return indexObject;
     }
 
-    public void setIndexSensor(Sensor indexSensor) {
-        this.indexSensor = indexSensor;
+    public void setIndexObject(Object indexObject) {
+        this.indexObject = indexObject;
     }
     ///
 

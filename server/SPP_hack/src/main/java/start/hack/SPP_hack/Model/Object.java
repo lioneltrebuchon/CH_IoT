@@ -25,14 +25,6 @@ public class Object
     @Column(name="`url`")
     private String url;
 
-    // Clé étrangère
-    @OneToMany
-    @JoinColumn(name="`indexDevice'")
-    private Device indexDevice;
-
-    public void setIndexDevice(Device indexDevice) {
-        this.indexDevice = indexDevice;
-    }
 
     public int getIndexObject() {
         return indexObject;
@@ -41,10 +33,6 @@ public class Object
 
     public void setIndexObject(int indexObject) {
         this.indexObject = indexObject;
-    }
-
-    public Device getIndexDevice() {
-        return indexDevice;
     }
 
 

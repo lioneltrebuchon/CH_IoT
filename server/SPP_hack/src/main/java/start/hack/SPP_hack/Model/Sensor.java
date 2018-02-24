@@ -18,16 +18,16 @@ public class Sensor
 
 
     // Clé étrangère
-    @OneToMany
-    @JoinColumn(name="`indexValue`")
-    private Value indexValue;
+    @OneToOne
+    @JoinColumn(name="`indexDevice`")
+    private Device indexDevice;
 
-    public Value getIndexValue() {
-        return indexValue;
+    public Device getIndexDevice() {
+        return indexDevice;
     }
 
-    public void setIndexValue(Value indexValue) {
-        this.indexValue = indexValue;
+    public void setIndexDevice(Device indexDevice) {
+        this.indexDevice = indexDevice;
     }
     ///
 
