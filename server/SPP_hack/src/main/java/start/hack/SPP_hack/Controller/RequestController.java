@@ -114,6 +114,23 @@ public class RequestController {
                     response.put("vibration",meanV);
                     response.put("noise",meanN);
                     break;
+                case 2:
+                    List<Float> tmpT= valueDAO.getValueOf("Temperature");
+                    List<Float> tmpL= valueDAO.getValueOf("Light");
+                    float meanT=0;
+                    for(Float f: tmpT){
+                        meanT+=f;
+                    }
+                    meanT=meanT/tmpT.size();
+                    float meanL;
+                    meanL=0;
+                    for(Float f: tmpL){
+                        meanL+=f;
+                    }
+                    meanL=meanL/tmpL.size();
+                    response.put("temperature", meanT);
+                    response.put("light",meanL);
+                    break;
                 default:
                     response=new JSONObject("{results:'none'}");
                     break;
