@@ -15,7 +15,10 @@ public class RequestController {
 		System.out.println("Dans fct"); 
         System.out.println(obj.toString());
     }
-
+	@RequestMapping(path="/get")
+	public void test(){
+		System.out.println("Test get");
+	}
     @RequestMapping(method = RequestMethod.POST,path="/request")
     public JSONObject request(@RequestBody String sObj){
         JSONObject obj = new JSONObject(sObj);
