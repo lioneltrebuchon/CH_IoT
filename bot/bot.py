@@ -6,7 +6,7 @@ from dateutil import tz
 from textblob import TextBlob
 import time
 import logging
-import dbClass
+import dbClass as dbClass
 
 # constants
 LOOPTIMEOUT = 5 # in seconds
@@ -37,7 +37,7 @@ def receive_input_string():
 
 
 def send_message(text, chat_id):
-    text = urllib.parse.quote_plus(text)
+    # text = urllib.parse.quote_plus(text)
     url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
     get(url)
 
@@ -61,7 +61,7 @@ def main():
     last_update_id = None
     firstTime = True
     id_array = []
-    db = dbClass # TODO add time of creation
+    db = dbClass.dbClassObj() # TODO add time of creation
     while True:
         # read all new messages from Telegram bot
         updates=get_updates(last_update_id)

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
-class dbClass:
+class dbClassObj:
     # Abstractor for the database keys from the Centos MariaSQL
     lst_home = ['home','homes','appart','appartment','apt','house','room','Zimmer','Wohnung']
     lst_zip = ['zip','PIN']
+    nbrs_zip = [5]
     lst_street = ['address','adress','adresse','street','Strasse','rue']
+    lst_address = ['where','location','address','adresse']
 
     def __init__(self):
         pass
@@ -12,10 +14,14 @@ class dbClass:
 
     def wantHome(self,msg):
         if any(msg.lower() in x for x in self.lst_home):
-            return true
+            return True
     def wantZIP(self,msg):  
-        if any(msg.lower() in x for x in self.lst_zip):
-            return true
+        if any(msg.lower() in x for x in self.lst_zip) or (is_number(msg) and len(msg)==5):
+            return True
     def wantStreet(self,msg):
         if any(msg.lower() in x for x in self.lst_street):
-            return true
+            return True
+    def wantAddress(self,msg):
+        if any(msg.lower() in x for x in self.lst_address):
+            return True
+            
