@@ -11,8 +11,8 @@ import start.hack.SPP_hack.Model.Data;
 @RestController
 @RequestMapping("/rest")
 public class RequestController {
-    @RequestMapping(method = RequestMethod.GET,path="/{obj}")
-    public void insert(@PathVariable("obj") String sObj){
+    @RequestMapping(method = RequestMethod.POST,path="/")
+    public void insert(@RequestBody String sObj){
 		JSONObject obj = new JSONObject(sObj);
 		System.out.println("Dans fct"); 
         System.out.println(obj.toString());
