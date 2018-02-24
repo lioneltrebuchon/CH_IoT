@@ -70,13 +70,10 @@ public class RequestController {
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     
                     response.put("size", tmp.size());
-                    int i=0;
                     Iterator<String> it1=tmp.iterator();
-
-                    while(it1.hasNext()){
+                    for(int i=0;i<tmp.size();i++){
                         System.out.println(response.toString());
-                        response.put("["+i+"]",it1.next());
-                        i++;
+                        response.put("["+i+"]",tmp.get(i));
                     }
                     break;
                 default:
