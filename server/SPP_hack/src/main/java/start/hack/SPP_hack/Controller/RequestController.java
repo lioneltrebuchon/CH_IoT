@@ -68,12 +68,13 @@ public class RequestController {
             switch(obj.getInt("usecase")){
                 case 0:
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
-                    
+                    List<String> tmp2= tmp= objectDAO.getUrlInCity(obj.getString("city"));
                     response.put("size", tmp.size());
                     Iterator<String> it1=tmp.iterator();
                     for(int i=0;i<tmp.size();i++){
                         System.out.println(tmp.get(i).toString());
                         response.append("streets",tmp.get(i));
+                        response.append("urls",tmp2.get(i));
                     }
                     break;
                 default:
