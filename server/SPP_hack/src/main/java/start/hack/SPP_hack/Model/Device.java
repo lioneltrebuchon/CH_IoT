@@ -8,12 +8,12 @@ public class Device
 {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="`indexDevice`", length= 20)
+    @Column(name="`index_device`", length= 20)
     private int indexDevice;
 
     // Clé étrangère
     @OneToOne
-    @JoinColumn(name="`indexObject`")
+    @JoinColumn(name="`index_object`")
     private Object indexObject;
 
     public Object getIndexObject() {

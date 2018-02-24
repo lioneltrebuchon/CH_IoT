@@ -19,7 +19,7 @@ public class Value
     private String sensorName;
     
     @OneToOne
-    @JoinColumn(name="`indexDevice`")
+    @JoinColumn(name="`index_device`")
     private Device indexDevice;
 
     public String getSensorName() {

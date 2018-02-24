@@ -7,7 +7,7 @@ public class Object
 {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="`indexObject`", length= 20)
+    @Column(name="`index_object`", length= 20)
     private int indexObject;
 
     @Column(name="`object_category`")

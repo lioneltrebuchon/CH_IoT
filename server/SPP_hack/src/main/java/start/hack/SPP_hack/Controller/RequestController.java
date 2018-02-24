@@ -90,6 +90,29 @@ public class RequestController {
                         response.append("urls",tmp2.get(i));
                     }
                     break;
+                case 1:
+                    List<Float> tmpH= valueDAO.getValueOf("Humidity");
+                    List<Float> tmpV= valueDAO.getValueOf("Vibration");
+                    List<Float> tmpN= valueDAO.getValueOf("Noise");
+                    float meanH=0;
+                    for(Float f: tmpH){
+                        meanH+=f;
+                    }
+                    float meanV=meanH/tmpV.size();
+                    meanV=0;
+                    for(Float f: tmpV){
+                        meanV+=f;
+                    }
+                    meanV=meanV/tmpV.size();
+                    float meanN=0;
+                    for(Float f: tmpN){
+                        meanN+=f;
+                    }
+                    meanN=meanN/tmpN.size();
+                    response.put("humidity", meanH);
+                    response.put("vibration",meanV);
+                    response.put("noise",meanN);
+                    break;
                 default:
                     response=new JSONObject("{results:'none'}");
                     break;
