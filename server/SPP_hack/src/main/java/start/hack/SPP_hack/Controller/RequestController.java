@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 import start.hack.SPP_hack.Model.Data;
 
 @RestController
+@RequestMapping("/")
 public class RequestController {
-    @RequestMapping(method = RequestMethod.POST,path="/")
+    @RequestMapping(method = RequestMethod.POST,path="")
     public void insert(@RequestBody Data obj){
         System.out.println(obj.toString());
     }
 
-    @RequestMapping(method = RequestMethod.POST,path="/request")
+    @RequestMapping(method = RequestMethod.POST,path="request")
     public JSONObject request(@RequestBody String sObj){
         JSONObject obj = new JSONObject(sObj);
         JSONObject response=null;
