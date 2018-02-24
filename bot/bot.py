@@ -61,8 +61,8 @@ def main():
     last_update_id = None
     firstTime = True
     id_array = []
+    db = dbClass # TODO add time of creation
     while True:
-        db = dbClass # TODO add time of creation
         # read all new messages from Telegram bot
         updates=get_updates(last_update_id)
         if ("result" in updates) and (len(updates["result"]) > 0):

@@ -6,8 +6,9 @@ class dbClass:
     lst_zip = ['zip','PIN']
     lst_street = ['address','adress','adresse','street','Strasse','rue']
 
-    def __init__(self, timeOfCreation):
-        self.timeOfCreation = timeOfCreation
+    def __init__(self):
+        pass
+        # self.timeOfCreation = timeOfCreation
 
     def wantHome(self,msg):
         if any(msg.lower() in x for x in self.lst_home):
