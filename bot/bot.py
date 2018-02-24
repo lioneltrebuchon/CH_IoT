@@ -4,6 +4,7 @@ import urllib
 from requests import get
 from datetime import datetime, timedelta
 from dateutil import tz
+from textblob import TextBlob
 import time
 
 # AMIV Bot imports
