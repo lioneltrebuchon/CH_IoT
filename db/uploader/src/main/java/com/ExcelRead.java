@@ -23,7 +23,7 @@ public class ExcelRead {
                 Cell cell3 = sheet.getCell(9, i);
                 Cell cell4 = sheet.getCell(10, i);
                 Cell cell5 = sheet.getCell(67, i);
-                System.out.println(cell1.getContents()+"|"+cell2.getContents()+"|"+cell3.getContents()+"|"+cell4.getContents()+"|"+cell5.getContents());
+                System.out.println(cell1.getContents()+"|"+new String(cell2.getContents().getBytes(), "UTF-8")+"|"+cell3.getContents()+"|"+new String(cell4.getContents().getBytes(), "UTF-8")+"|"+cell5.getContents());
                 //System.out.println("Adress:" + "" + cell2.getContents() + "," + cell3.getContents() + " " + cell4.getContents());
                 //System.out.println("Link:" + "" + cell5.getContents());
 
