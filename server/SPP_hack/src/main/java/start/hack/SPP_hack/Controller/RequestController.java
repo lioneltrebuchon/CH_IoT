@@ -98,7 +98,8 @@ public class RequestController {
                     for(Float f: tmpH){
                         meanH+=f;
                     }
-                    float meanV=meanH/tmpV.size();
+                    meanH=meanH/tmpV.size();
+                    float meanV;
                     meanV=0;
                     for(Float f: tmpV){
                         meanV+=f;
