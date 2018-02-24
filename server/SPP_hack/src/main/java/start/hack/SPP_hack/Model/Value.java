@@ -15,7 +15,17 @@ public class Value
 
     @Column(name="`value`")
     private float value;
+    @OneToOne
+    @JoinColumn(name="`indexSensor`")
+    private Sensor indexSensor;
 
+    public Sensor getIndexSensor() {
+        return indexSensor;
+    }
+
+    public void setIndexSensor(Sensor indexSensor) {
+        this.indexSensor = indexSensor;
+    }
     public int getIndexValue() {
         return indexValue;
     }
