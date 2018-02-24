@@ -70,7 +70,7 @@ public class RequestController {
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     System.out.println("Here");
-                    response.append("size", tmp.size());
+                    response.put("size", tmp.size());
                     int i=0;
                     Iterator<String> it1=tmp.iterator();
                     Iterator<String> it2=tmp2.iterator();
