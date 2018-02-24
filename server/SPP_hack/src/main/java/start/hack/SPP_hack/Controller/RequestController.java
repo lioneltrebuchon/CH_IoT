@@ -68,19 +68,15 @@ public class RequestController {
             switch(obj.getInt("usecase")){
                 case 0:
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
-                    List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     
                     response.put("size", tmp.size());
                     int i=0;
                     Iterator<String> it1=tmp.iterator();
-                    Iterator<String> it2=tmp2.iterator();
 
-                    while(it1.hasNext() && it2.hasNext()){
+                    while(it1.hasNext()){
                         JSONObject oIn=new JSONObject();
                         System.out.println(response.toString());
-                        oIn.put("street", it1.next());
-                        oIn.put("url",it2.next());
-                        response.put("["+String.valueOf(i)+"]",oIn);
+                        response.put("["+String.valueOf(i)+"]",it1.next());
                         i++;
                     }
                     break;
