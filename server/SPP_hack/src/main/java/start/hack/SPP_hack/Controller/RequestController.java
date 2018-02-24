@@ -74,9 +74,8 @@ public class RequestController {
                     Iterator<String> it1=tmp.iterator();
 
                     while(it1.hasNext()){
-                        JSONObject oIn=new JSONObject();
                         System.out.println(response.toString());
-                        response.put("["+String.valueOf(i)+"]",it1.next());
+                        response.put("["+i+"]",it1.next());
                         i++;
                     }
                     break;
