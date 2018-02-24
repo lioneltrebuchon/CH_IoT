@@ -74,9 +74,10 @@ public class RequestController {
                     int i=0;
                     Iterator<String> it1=tmp.iterator();
                     Iterator<String> it2=tmp2.iterator();
-                    System.out.println("Here");
+
                     while(it1.hasNext() && it2.hasNext()){
                         JSONObject oIn=new JSONObject();
+                        System.out.println(response.toString());
                         oIn.put("street", it1.next());
                         oIn.put("url",it2.next());
                         response.put(String.valueOf(i),oIn);
