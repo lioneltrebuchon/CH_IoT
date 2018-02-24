@@ -67,6 +67,8 @@ public class Data {
     public void setLight(float light) {
         this.light = light;
     }
+	
+	@Override
 	public String toString(){
 		String msg="Object : [" + id + "," + timestamp + ","+ vibration + "," + noise + "," + humidity + "," + temperature +","+ light +"]";
 		return msg;
