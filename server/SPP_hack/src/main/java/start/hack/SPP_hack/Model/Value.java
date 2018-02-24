@@ -15,16 +15,27 @@ public class Value
 
     @Column(name="`value`")
     private float value;
+    @Column(name="`sensorName`")
+    private String sensorName;
+    
     @OneToOne
-    @JoinColumn(name="`indexSensor`")
-    private Sensor indexSensor;
+    @JoinColumn(name="`indexDevice`")
+    private Device indexDevice;
 
-    public Sensor getIndexSensor() {
-        return indexSensor;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setIndexSensor(Sensor indexSensor) {
-        this.indexSensor = indexSensor;
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
+    }
+
+    public Device getIndexDevice() {
+        return indexDevice;
+    }
+
+    public void setIndexDevice(Device indexDevice) {
+        this.indexDevice = indexDevice;
     }
     public int getIndexValue() {
         return indexValue;

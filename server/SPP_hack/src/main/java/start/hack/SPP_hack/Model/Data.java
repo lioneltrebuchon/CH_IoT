@@ -70,7 +70,6 @@ public class Data {
 	
 	@Override
 	public String toString(){
-		String msg="Object : [" + id + "," + timestamp + ","+ vibration + "," + noise + "," + humidity + "," + temperature +","+ light +"]";
-		return msg;
+		return "Object : [" + id + "," + timestamp + ","+ vibration + "," + noise + "," + humidity + "," + temperature +","+ light +"]";
 	}
 }
