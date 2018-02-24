@@ -67,4 +67,7 @@ public class Data {
     public void setLight(float light) {
         this.light = light;
     }
+	public String toString(){
+		return "Object : [" + id + ","+ timestamp +","+ vibration +","+ noise +"," + humidity +"," temperature +","+light+"]";
+	}
 }
