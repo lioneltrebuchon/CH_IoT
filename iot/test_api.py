@@ -3,9 +3,9 @@
 import requests
 import time
 
-ADDR = "18.219.99.213"
+ADDR = "52.14.216.215"
 PORT = "8080"
-PATH = "/rest/"
+PATH = "/rest/request"
 
 def client_send(vibration, noise, humidity, temperature, light):
 	info = {

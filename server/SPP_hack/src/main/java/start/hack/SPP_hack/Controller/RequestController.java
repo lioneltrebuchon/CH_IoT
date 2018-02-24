@@ -80,7 +80,7 @@ public class RequestController {
                         System.out.println(response.toString());
                         oIn.put("street", it1.next());
                         oIn.put("url",it2.next());
-                        response.put(String.valueOf(i),oIn);
+                        response.put("["+String.valueOf(i)+"]",oIn);
                         i++;
                     }
                     break;
