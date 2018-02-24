@@ -12,7 +12,7 @@ class dbClass:
     def wantHome(self,msg):
         if any(msg in x for x in self.lst_home):
             return true
-    def wantZIP(self,msg):
+    def wantZIP(self,msg):  
         if any(msg in x for x in self.lst_zip):
             return true
     def wantStreet(self,msg):

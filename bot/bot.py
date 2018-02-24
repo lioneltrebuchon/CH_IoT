@@ -33,6 +33,8 @@ def get_last_update_id(updates):
     return max(update_ids)
 
 def receive_input_string():
+    send_message("TODO This function is not yet implemented", chat)
+
 
 def send_message(text, chat_id):
     text = urllib.parse.quote_plus(text)
@@ -60,7 +62,7 @@ def main():
     firstTime = True
     id_array = []
     while True:
-        db = dbClass() # TODO add time of creation
+        db = dbClass # TODO add time of creation
         # read all new messages from Telegram bot
         updates=get_updates(last_update_id)
         if ("result" in updates) and (len(updates["result"]) > 0):
