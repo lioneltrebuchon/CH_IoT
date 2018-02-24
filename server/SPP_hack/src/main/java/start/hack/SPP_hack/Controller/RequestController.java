@@ -1,5 +1,8 @@
 package start.hack.SPP_hack.Controller;
 
+import com.google.gson.Gson;
+import java.util.Iterator;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import start.hack.SPP_hack.Model.Data;
 import start.hack.SPP_hack.dao.ValueDAO;
 import start.hack.SPP_hack.Model.Value;
 import start.hack.SPP_hack.Model.Device;
+import start.hack.SPP_hack.Model.Object;
 import start.hack.SPP_hack.dao.DeviceDAO;
 import start.hack.SPP_hack.dao.ObjectDAO;
 
@@ -63,7 +67,20 @@ public class RequestController {
         if(obj!=null){
             switch(obj.getInt("usecase")){
                 case 0:
-                    response=new JSONObject(objectDAO.findByObject_city(obj.getString("city")));
+                    List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
+                    List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
+                    response.append("size", tmp.size());
+                    int i=0;
+                    Iterator<String> it1=tmp.iterator();
+                    Iterator<String> it2=tmp2.iterator();
+                    while(it1.hasNext() && it2.hasNext()){
+                        JSONObject oIn=new JSONObject();
+                        oIn.put("street", it1.next());
+                        oIn.put("url",it2.next());
+                        response.put(String.valueOf(i),oIn);
+                        i++;
+                    }
+                    response=new JSONObject();
                     break;
                 default:
                     response=new JSONObject("{results:'none'}");
