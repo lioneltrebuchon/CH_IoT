@@ -81,7 +81,6 @@ public class RequestController {
                         response.put(String.valueOf(i),oIn);
                         i++;
                     }
-                    response=new JSONObject();
                     break;
                 default:
                     response=new JSONObject("{results:'none'}");
