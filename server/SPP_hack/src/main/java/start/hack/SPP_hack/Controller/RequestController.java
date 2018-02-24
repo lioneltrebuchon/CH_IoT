@@ -61,7 +61,7 @@ public class RequestController {
 		System.out.println("Test get");
 	}
     @RequestMapping(method = RequestMethod.POST,path="/request")
-    public JSONObject request(@RequestBody String sObj){
+    public String request(@RequestBody String sObj){
         JSONObject obj = new JSONObject(sObj);
         System.out.println(obj.toString());
         JSONObject response=new JSONObject();
@@ -72,7 +72,7 @@ public class RequestController {
                     response.put("size", tmp.size());
                     Iterator<String> it1=tmp.iterator();
                     for(int i=0;i<tmp.size();i++){
-                        System.out.println(response.toString());
+                        System.out.println(tmp.get(i).toString());
                         response.append("streets",tmp.get(i));
                     }
                     break;
@@ -80,6 +80,6 @@ public class RequestController {
                     response=new JSONObject("{results:'none'}");
                     break;
             }
-        return response;
+        return response.toString();
     }
 }
