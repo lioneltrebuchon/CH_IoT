@@ -64,7 +64,7 @@ public class RequestController {
     public JSONObject request(@RequestBody String sObj){
         JSONObject obj = new JSONObject(sObj);
         System.out.println(obj.toString());
-        JSONObject response=null;
+        JSONObject response=new JSONObject();
         if(obj!=null){
             switch(obj.getInt("usecase")){
                 case 0:
