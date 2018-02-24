@@ -69,11 +69,11 @@ public class RequestController {
                 case 0:
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     
-                    response.append("size", tmp.size());
+                    response.put("size", tmp.size());
                     Iterator<String> it1=tmp.iterator();
                     for(int i=0;i<tmp.size();i++){
                         System.out.println(response.toString());
-                        response.append("["+i+"]",tmp.get(i));
+                        response.append("streets",tmp.get(i));
                     }
                     break;
                 default:
