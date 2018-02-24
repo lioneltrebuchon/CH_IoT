@@ -7,6 +7,8 @@ class dbClassObj:
     nbrs_zip = [5]
     lst_street = ['address','adress','adresse','street','Strasse','rue']
     lst_address = ['where','location','address','adresse']
+    lst_city = ['in', 'close to']
+    lst_secure = ['secure', 'safe']
 
     def __init__(self):
         pass
@@ -15,6 +17,20 @@ class dbClassObj:
     def wantHome(self,msg):
         if any(msg.lower() in x for x in self.lst_home):
             return True
+    def wantHomeAndCity(self,msg):
+        if(any(msg.lower() in x for x in self.lst_home) and any(msg.lower() in x for x in self.lst_city)):
+            for k in range(0, len(msg.lower())):
+                if(k == 'i'):
+                    return msg[k+2::]
+                elif(k == 'c'):
+                    return msg[k+8::] 
+        else:
+            return False
+    def wantSecure(self, msg):
+        if any(msg.lower() in x for x in self.lst_secure):
+            return True
+        else:
+            return False
     def wantZIP(self,msg):  
         if any(msg.lower() in x for x in self.lst_zip): 
         # or (self.is_number(msg) and len(msg)==5):

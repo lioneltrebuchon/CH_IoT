@@ -3,25 +3,20 @@
 import requests
 import time
 
-ADDR = "18.219.99.213"
+ADDR = "52.14.216.215"
 PORT = "8080"
-PATH = "/rest/"
+PATH = "/rest/request"
 
 def client_send(vibration, noise, humidity, temperature, light):
 	info = {
-		"id": "1",
-		"timestamp": time.time(),
-		"vibration": vibration,
-		"noise": noise,
-		"humidity": humidity,
-		"temperature": temperature,
-		"light": light
+		"usecase": 0,
+		"city": "st. gallen"
 		}
 	print(info)
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
 	# ~ addr = "http://"+ADDR+":"+PORT+PATH
 	# ~ res = requests.get(addr)
-	print(res)
+	print(res.text)
 	return 0
 
 while(1):

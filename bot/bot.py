@@ -17,6 +17,44 @@ LISTEN_REQUEST = "/rest/request"
 URL_HOME = URL_API + "/events"
 URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
 
+
+#
+# Solve the use cases
+#
+def uc0_send(city):
+	info = {
+		"usecase": 0,
+		"city": city
+		}
+	print("To be sent: "+str(info))
+	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	print(res)
+	return res.text
+	
+def uc1_send(houseid):
+	info = {
+		"usecase": 1,
+		"house": houseid
+		}
+	print("To be sent: "+str(info))
+	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	print(res)
+	return 0
+	
+def uc2_send(city):
+	info = {
+		"usecase": 0,
+		"city": city
+		}
+	print("To be sent: "+str(info))
+	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	print(res)
+	return 0
+
+
+
+
+
 #
 # Functions to Telegram API
 #
@@ -81,12 +119,20 @@ def main():
                 msg = r["message"]["text"].lower()
                 chat = r["message"]["chat"]["id"]
                 id_array.append(chat)
-                if db.wantHome(msg):
-                    send_message("recognized home", chat)
-                if db.wantZIP(msg):
-                    send_message("recognized zip", chat)
-                if db.wantStreet(msg):
-                    send_message("recognized street", chat)
+                city=db.wantHomeAndCity(msg)
+                if(city!=False):
+                    resp=uc0_send(city)
+                elif db.wantHome(msg):
+                    send_message("In which city would you like to live ?", chat)
+                elif db.wantSecure(msg):
+                    send_message("The criminality is 5.2%, it's a quiet safe neighborhood.", chat)
+                elif db.wantComfortable(msg):
+                     pass
+					
+                # ~ elif db.wantZIP(msg):
+                    # ~ send_message("recognized zip", chat)
+                # ~ elif db.wantStreet(msg):
+                    # ~ send_message("recognized street", chat)
         # pause the loop
         time.sleep(LOOPTIMEOUT)
 
