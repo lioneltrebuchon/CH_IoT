@@ -20,11 +20,11 @@ public class DataBaseManagerMySQL extends DatabaseManager{
    
     
     public static Connection DBConnection() throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");// connexion à la DB on verifie si on est deja connecter si oui on reprend la connexion precedent sinon une new Connexion
+        // connexion à la DB on verifie si on est deja connecter si oui on reprend la connexion precedent sinon une new Connexion
         if (cnx == null) {
-            
-            
-            Class.forName("java.sql.Driver");
+
+
+            Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/spsdb";
             cnx = DriverManager.getConnection(url,"root","toor");
             
