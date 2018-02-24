@@ -68,6 +68,7 @@ public class Data {
         this.light = light;
     }
 	public String toString(){
-		return "Object : [" + id + ","+ timestamp +","+ vibration +","+ noise +"," + humidity +"," temperature +","+light+"]";
+		String msg="Object : [" + id + "," + timestamp + ","+ vibration + "," + noise + "," + humidity + "," + temperature +","+ light +"]";
+		return msg;
 	}
 }
