@@ -16,7 +16,8 @@ class dbClassObj:
         if any(msg.lower() in x for x in self.lst_home):
             return True
     def wantZIP(self,msg):  
-        if any(msg.lower() in x for x in self.lst_zip) or (self.is_number(msg) and len(msg)==5):
+        if any(msg.lower() in x for x in self.lst_zip): 
+        # or (self.is_number(msg) and len(msg)==5):
             return True
     def wantStreet(self,msg):
         if any(msg.lower() in x for x in self.lst_street):
@@ -25,19 +26,19 @@ class dbClassObj:
         if any(msg.lower() in x for x in self.lst_address):
             return True
 
-    def is_number(self,s):
-        try:
-            float(s)
-            return True
-        except ValueError:
-            pass
+    # def is_number(self,s):
+    #     try:
+    #         float(s)
+    #         return True
+    #     except ValueError:
+    #         pass
      
-        try:
-            import unicodedata
-            unicodedata.numeric(s)
-            return True
-        except (TypeError, ValueError):
-            pass
+    #     try:
+    #         import unicodedata
+    #         unicodedata.numeric(s)
+    #         return True
+    #     except (TypeError, ValueError):
+    #         pass
      
-        return False
+    #     return False
             
