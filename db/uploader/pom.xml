@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ExcelRead</mainClass>
+                            <mainClass>com.ExcelRead</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
