@@ -14,15 +14,8 @@
     <version>2.6.12</version>
 </dependency>
 </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.ExcelRead</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <properties>
+        <!-- The main class to start by executing java -jar -->
+        <start-class>com.ExcelRead</start-class>
+    </properties>
 </project>
