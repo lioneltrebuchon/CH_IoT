@@ -19,7 +19,8 @@ public class DataBaseManagerMySQL extends DatabaseManager{
 
    
     
-    public static Connection DBConnection() throws Exception {          // connexion à la DB on verifie si on est deja connecter si oui on reprend la connexion precedent sinon une new Connexion
+    public static Connection DBConnection() throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");// connexion à la DB on verifie si on est deja connecter si oui on reprend la connexion precedent sinon une new Connexion
         if (cnx == null) {
             
             
