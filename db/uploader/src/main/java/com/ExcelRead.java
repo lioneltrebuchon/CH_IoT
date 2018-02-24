@@ -29,7 +29,7 @@ public class ExcelRead {
                 //System.out.println("Link:" + "" + cell5.getContents());
 
                String SQL = "INSERT INTO object_category VALUES("+cell1.getContents()+","+cell2.getContents()+","+cell3.getContents()+","+cell4.getContents()+","+cell5.getContents()+")";
-               databaseManager.insert(SQL);
+               databaseManager.update(SQL);
             }
 
         } catch (IOException e) {
