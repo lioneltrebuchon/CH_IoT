@@ -37,19 +37,32 @@ public class RequestController {
             //
             Value tmp=new Value();
             tmp.setIndexDevice(dev);
+            tmp.setTimeStamp(obj.getTimestamp());
             tmp.setValue(obj.getHumidity());
             tmp.setSensorName("Humidity");
-            tmp.setTimeStamp(obj.getTimestamp());
+            
             valueDAO.save(tmp);
+            tmp=new Value();
+            tmp.setIndexDevice(dev);
+            tmp.setTimeStamp(obj.getTimestamp());
             tmp.setValue(obj.getLight());
             tmp.setSensorName("Light");
             valueDAO.save(tmp);
+            tmp=new Value();
+            tmp.setIndexDevice(dev);
+            tmp.setTimeStamp(obj.getTimestamp());
             tmp.setValue(obj.getNoise());
             tmp.setSensorName("Noise");
             valueDAO.save(tmp);
+            tmp=new Value();
+            tmp.setIndexDevice(dev);
+            tmp.setTimeStamp(obj.getTimestamp());
             tmp.setValue(obj.getTemperature());
             tmp.setSensorName("Temperature");
             valueDAO.save(tmp);
+            tmp=new Value();
+            tmp.setIndexDevice(dev);
+            tmp.setTimeStamp(obj.getTimestamp());
             tmp.setValue(obj.getVibration());
             tmp.setSensorName("Vibration");
             valueDAO.save(tmp);
