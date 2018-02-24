@@ -63,10 +63,12 @@ public class RequestController {
     @RequestMapping(method = RequestMethod.POST,path="/request")
     public JSONObject request(@RequestBody String sObj){
         JSONObject obj = new JSONObject(sObj);
+        System.out.println(obj.toString());
         JSONObject response=null;
         if(obj!=null){
             switch(obj.getInt("usecase")){
                 case 0:
+                    System.out.println("Here");
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     response.append("size", tmp.size());
