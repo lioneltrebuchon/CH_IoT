@@ -15,7 +15,6 @@ public class ExcelRead {
         try {
 
             workbook = Workbook.getWorkbook(new File("./Exemple1.xls")); // enregistrer le fi+chier en format Excel 97-2003
-
             Sheet sheet = workbook.getSheet(0); // lire la sheet Tabelle1 du fichier Excel
 
           for(int i= 4; i< sheet.getRows(); i++) {
@@ -29,9 +28,9 @@ public class ExcelRead {
                 //System.out.println("Link:" + "" + cell5.getContents());
 
                String SQL = "INSERT INTO object_category VALUES("+cell1.getContents()+","+cell2.getContents()+","+cell3.getContents()+","+cell4.getContents()+","+cell5.getContents()+")";
-               try {
+              // try {
                    databaseManager.update(SQL);
-               }catch (Exception e){}
+               //}catch (Exception e){}
             }
 
         } catch (IOException e) {
