@@ -16,8 +16,8 @@ import logging
 LOOPTIMEOUT = 5 # in seconds
 # URL_BOT = "https://api.telegram.org/bot{}/".format(TOKEN_AMIV_BOT)
 URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
-URL_HOME = URL_AMIV_API + "/request/"
-# URL_AMIV_API = "https://amiv-api.ethz.ch"
+URL_HOME = URL_HOME + "/request/"
+# URL_HOME = "https://amiv-api.ethz.ch"
 IP_ADDR = "18.219.99.213"
 
 def get_updates(offset=None):
