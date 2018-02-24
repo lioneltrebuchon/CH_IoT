@@ -11,5 +11,5 @@ import org.springframework.data.repository.CrudRepository;
 import start.hack.SPP_hack.Model.Object;
 
 public interface ObjectDAO extends CrudRepository<Object, Integer>{
-    List<Object> findByObject_city(String city);
+    List<Object> findByObject_city(String object_city);
 }
