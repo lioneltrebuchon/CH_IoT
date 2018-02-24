@@ -13,8 +13,8 @@ LOOPTIMEOUT = 5 # in seconds
 URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
 URL_API = "TODO"
 IP_ADDR = "18.222.52.158"
-LISTEN_REQUEST = "/request/"
-URL_HOME = URL_API + "/events/"
+LISTEN_REQUEST = "/rest/request"
+URL_HOME = URL_API + "/events"
 URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
 
 #
