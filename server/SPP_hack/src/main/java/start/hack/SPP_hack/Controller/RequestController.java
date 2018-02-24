@@ -16,6 +16,7 @@ public class RequestController {
 		
 	System.out.println("Dans fct"); 
         System.out.println(obj.toString());
+        
     }
 	@RequestMapping(path="/get")
 	public void test(@RequestBody String sObj){
