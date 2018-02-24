@@ -16,16 +16,9 @@ import logging
 LOOPTIMEOUT = 5 # in seconds
 # URL_BOT = "https://api.telegram.org/bot{}/".format(TOKEN_AMIV_BOT)
 URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
+URL_HOME = URL_AMIV_API + "/request/"
 # URL_AMIV_API = "https://amiv-api.ethz.ch"
 IP_ADDR = "18.219.99.213"
-LISTEN_REQUEST = "/request/"
-URL_AMIV_EVENT = URL_AMIV_API + "/events/"
-URL_AMIV_EVENT_LIST = URL_AMIV_API + "/events?sort=-_time_start"
-
-
-#
-# Functions to Telegram API
-#
 
 def get_updates(offset=None):
     url = URL_BOT + "getUpdates?timeout=10"
@@ -55,7 +48,7 @@ def send_events_en(chat_id):
     # get all future events from AMIV API
     curutc = datetime.utcnow()
     searchstring = "where={\"time_advertising_start\":{\"$lte\":\"%s\"}, \"time_start\":{\"$gte\":\"%s\"}}" % (curutc.strftime("%Y-%m-%dT%H:%M:%SZ"), curutc.strftime("%Y-%m-%dT%H:%M:%SZ"))
-    resp = get(URL_AMIV_EVENT_LIST + "&" + searchstring).json()
+    resp = get(URL_HOME + "&" + searchstring).json()
     resp = get()
     if not ("_items" in resp):
         print("Did not get _items in response. Abort.")
@@ -72,7 +65,7 @@ def send_events_en(chat_id):
         if "title_en" in fe:
             te += "*%s*\n" % fe["title_en"]
         else:
-            send_message("We unfortunately dont have an english Title, so we'll just send you the german one", chat_id )
+            send_message("We unfortunately dont have an english description, so we'll just send you the german one", chat_id )
             te += "*%s*\n" % fe["title_ge"]
         if "time_start" in fe:
             dt = datetime.strptime(fe["time_start"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=tz.tzutc())
@@ -103,7 +96,7 @@ def send_events_de(chat_id):
     # get all future events from AMIV API
     curutc = datetime.utcnow()
     searchstring = "where={\"time_advertising_start\":{\"$lte\":\"%s\"}, \"time_start\":{\"$gte\":\"%s\"}}" % (curutc.strftime("%Y-%m-%dT%H:%M:%SZ"), curutc.strftime("%Y-%m-%dT%H:%M:%SZ"))
-    resp = get(URL_AMIV_EVENT_LIST + "&" + searchstring).json()
+    resp = get( URL_BOT + "&" + searchstring).json()
     if not ("_items" in resp):
         print("Did not get _items in response. Abort.")
         return
@@ -111,7 +104,7 @@ def send_events_de(chat_id):
 
     # send no event message if no events here
     if not fevents:
-        send_message("Es gibt momentan keine zukünftigen Events. Frag uns doch später nochmal an :)", chat_id)
+        send_message("Es gibt momentan keine passende Wohnung. Frag uns doch spaeter nochmal an :)", chat_id)
         return
 
     for fe in fevents:
@@ -133,7 +126,7 @@ def send_events_de(chat_id):
             te += fe["description_de"]
             te += "\n" + "\n"
         if "_id" in fe:
-            te += "Event ID für weitere Informationen: \n" + "/" + "e\_" + fe["_id"]
+            te += "Event ID fuer weitere Informationen: \n" + "/" + "e\_" + fe["_id"]
         else:
             send_message("Wir haben leider keine deutsche Beschreibung gefunden, wir werden dir die englische schicken", chat_id)
             te += fe["description_en"]
