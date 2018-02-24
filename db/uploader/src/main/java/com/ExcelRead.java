@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class ExcelRead {
 
     public static void main(String[] args) throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
         DataBaseManagerMySQL databaseManager= new DataBaseManagerMySQL();
         Workbook workbook = null;
         try {
