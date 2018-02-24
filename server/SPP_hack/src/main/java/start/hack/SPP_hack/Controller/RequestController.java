@@ -12,9 +12,9 @@ import start.hack.SPP_hack.Model.Data;
 @RequestMapping("/rest")
 public class RequestController {
     @RequestMapping(method = RequestMethod.POST,path="/")
-    public void insert(@RequestBody String sObj){
-		JSONObject obj = new JSONObject(sObj);
-		System.out.println("Dans fct"); 
+    public void insert(@RequestBody Data obj){
+		
+	System.out.println("Dans fct"); 
         System.out.println(obj.toString());
     }
 	@RequestMapping(path="/get")
