@@ -26,7 +26,7 @@ public class Object
     private String url;
 
     // Clé étrangère
-    @OneToOne
+    @OneToMany
     @JoinColumn(name="`indexDevice'")
     private Device indexDevice;
 

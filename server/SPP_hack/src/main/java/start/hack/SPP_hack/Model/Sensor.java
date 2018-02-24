@@ -18,7 +18,7 @@ public class Sensor
 
 
     // Clé étrangère
-    @OneToOne
+    @OneToMany
     @JoinColumn(name="`indexValue`")
     private Value indexValue;
 

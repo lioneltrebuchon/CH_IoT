@@ -12,7 +12,7 @@ public class Device
     private int indexDevice;
 
     // Clé étrangère
-    @OneToOne
+    @OneToMany
     @JoinColumn(name="`indexSensor`")
     private Sensor indexSensor;
 

@@ -13,9 +13,6 @@ import start.hack.SPP_hack.Model.Data;
 public class RequestController {
     @RequestMapping(method = RequestMethod.POST,path="/")
     public void insert(@RequestBody Data obj){
-		
-	System.out.println("Dans fct"); 
-        System.out.println(obj.toString());
         
     }
 	@RequestMapping(path="/get")
