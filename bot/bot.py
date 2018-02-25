@@ -12,11 +12,11 @@ import requests
 import dbClass as dbClass
 
 # constants
-LOOPTIMEOUT = 0.5 # in seconds
+LOOPTIMEOUT = 1 # in seconds
 # ~ URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
 URL_BOT = "https://api.telegram.org/bot532946635:AAEpG1sPQUajjxtduexcaQHHu9FuClKxhuY/"
 URL_API = "TODO"
-IP_ADDR = "18.222.52.158"
+IP_ADDR = "52.14.216.215"
 LISTEN_REQUEST = "/rest/request"
 URL_HOME = URL_API + "/events"
 URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
@@ -32,6 +32,7 @@ def uc0_send(city):
 		}
 	print("To be sent: "+str(info))
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	print("======="+res.text)
 	parsed_json = json.loads(res.text)
 	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
 	# ~ print(matrix)
