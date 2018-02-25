@@ -6,11 +6,15 @@ from dateutil import tz
 from textblob import TextBlob
 import time
 import logging
+import json
+import requests
+
 import dbClass as dbClass
 
 # constants
-LOOPTIMEOUT = 5 # in seconds
-URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
+LOOPTIMEOUT = 0.5 # in seconds
+# ~ URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
+URL_BOT = "https://api.telegram.org/bot532946635:AAEpG1sPQUajjxtduexcaQHHu9FuClKxhuY/"
 URL_API = "TODO"
 IP_ADDR = "18.222.52.158"
 LISTEN_REQUEST = "/rest/request"
@@ -28,32 +32,51 @@ def uc0_send(city):
 		}
 	print("To be sent: "+str(info))
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	print(res)
-	return res.text
+	parsed_json = json.loads(res.text)
+	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
+	# ~ print(matrix)
+	return(parsed_json["street"], parsed_json["site"])
 	
-def uc1_send(houseid):
+def uc1_send(addr): # Confort
 	info = {
 		"usecase": 1,
-		"house": houseid
+		"house": addr
 		}
 	print("To be sent: "+str(info))
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	print(res)
-	return 0
+	parsed_json = json.loads(res.text)
+	humidity = parsed_json["humidity"]     #25
+	vibration = parsed_json["vibration"]   #13,5
+	noise = parsed_json["noise"]           #12
+	if(humidity<30 and vibration<25 and noise<25):
+		return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	elif(humidity>30):
+		return("This place is a bit more humid than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	elif(vibration>25):
+		return("This place shakes a little more than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	elif(noise>25):
+		return("This place is a bit more noisy than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	else:
+		return -1
 	
-def uc2_send(city):
+def uc2_send(addr): #Sunny
 	info = {
 		"usecase": 0,
 		"city": city
 		}
 	print("To be sent: "+str(info))
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	print(res)
-	return 0
-
-
-
-
+	parsed_json = json.loads(res.text)
+	temperature = parsed_json["temperature"]     
+	light = parsed_json["light"]  
+	if(temperature>17 and light>12):
+		return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	elif(temperature<17):
+		return("This place seems a bit cold but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	elif(light<25):
+		return("This place seems a bit dark but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	else:
+		return -1
 
 #
 # Functions to Telegram API
@@ -70,8 +93,8 @@ def get_last_update_id(updates):
         update_ids.append(int(update["update_id"]))
     return max(update_ids)
 
-def receive_input_string():
-    send_message("TODO This function is not yet implemented", chat)
+# ~ def receive_input_string():
+    # ~ send_message("TODO This function is not yet implemented", chat)
 
 
 def send_message(text, chat_id):
@@ -79,19 +102,19 @@ def send_message(text, chat_id):
     url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
     get(url)
 
-def get_home(indexDevice):
-    resp = get(URL_HOME + indexDevice).json()
-    if "_status" in resp:
-        return None
-    else:
-        return resp
+# ~ def get_home(indexDevice):
+    # ~ resp = get(URL_HOME + indexDevice).json()
+    # ~ if "_status" in resp:
+        # ~ return None
+    # ~ else:
+        # ~ return resp
 
-def help(chat_id):
-    HELP_TEXT = """Help!"""
-    send_message(HELP_TEXT, chat_id)
+# ~ def help(chat_id):
+    # ~ HELP_TEXT = """Help!"""
+    # ~ send_message(HELP_TEXT, chat_id)
 
-def initialize_prop_lists():
-    lst_home = ['home','homes','appart','appartment','apt','house','room','Zimmer','Wohnung']
+# ~ def initialize_prop_lists():
+    # ~ lst_home = ['home','homes','appart','appartment','apt','house','room','Zimmer','Wohnung']
 
 
 def main():
@@ -100,6 +123,9 @@ def main():
     firstTime = True
     id_array = []
     db = dbClass.dbClassObj() # TODO add time of creation
+    current_addr = ""
+    street = []
+    site = []
     while True:
         # read all new messages from Telegram bot
         updates=get_updates(last_update_id)
@@ -121,14 +147,29 @@ def main():
                 id_array.append(chat)
                 city=db.wantHomeAndCity(msg)
                 if(city!=False):
-                    resp=uc0_send(city)
+                    (street, site) = uc0_send(city)
+                    send_message("Here are some alvailable properties near"+city+":", chat)
+                    if(len(street)>5):
+                        m = 5
+                    else:
+                        m = len(street)
+                    for k in range(0, m):
+                        send_message(str(k)+" "+street[k]+": " , chat)
+                    send_message("What is the number of the place number are you interrested in:", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
                 elif db.wantSecure(msg):
-                    send_message("The criminality is 5.2%, it's a quiet safe neighborhood.", chat)
+                    send_message("The criminality is under 5%, it's a quietly safe neighborhood.", chat)
                 elif db.wantComfortable(msg):
-                     pass
-					
+                     re = uc1_send(current_addr)
+                     send_message(re, chat)
+                elif db.wantSunny(msg):
+                     re = uc2_send(current_addr)
+                     send_message(re, chat)
+                elif db.houseNumber(msg):
+                     current_addr = street[int(msg)]
+                     send_message("Good choice, that's a really nice place", chat)
+                     send_message("What would you like to know mor about this place", chat)
                 # ~ elif db.wantZIP(msg):
                     # ~ send_message("recognized zip", chat)
                 # ~ elif db.wantStreet(msg):
