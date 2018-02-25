@@ -90,19 +90,19 @@ public class RequestController {
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     
                     Iterator<String> it1=tmp.iterator();
-                    if(obj.getString("city")=="st gallen"){ //for the Demo
+                   // if(obj.getString("city")=="st gallen"){ //for the Demo
                         response.put("size", 6);
                         response.append("streets", objectDAO.findOneS(1));
                         response.append("urls", objectDAO.findOneU(1));
                         response.append("streets", "St. Leonhard-Str. 39");
-                        response.append("urls", "");
+                        response.append("urls", "https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website");
                         response.append("streets", "Bernhardswiesweg 6");
-                        response.append("urls", "");
+                        response.append("urls", "https://www.mywincasa.ch/go/rent/28346116-2fb7-4d3e-a3cf-8dfe350db14a?utm_campaign=idx&utm_source=owp&utm_medium=website");
                         response.append("streets", "Zürcherstr. 464");
-                        response.append("urls", "");
-                    }else {
-                        response.put("size", 5);
-                    }
+                        response.append("urls", "https://www.mywincasa.ch/go/rent/e8aed698-56e3-4768-952d-f061e3cc49df?utm_campaign=idx&utm_source=owp&utm_medium=website");
+                    //}else {
+                    //    response.put("size", 5);
+                    //}
                     /*for(int i=0;i<5;i++){
                         System.out.println(tmp.get(i).toString());
                         response.append("streets",tmp.get(i));
