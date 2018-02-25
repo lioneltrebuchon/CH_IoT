@@ -54,16 +54,17 @@ def uc1_send(addr): # Confort
 	humidity = parsed_json["humidity"]     #25
 	vibration = parsed_json["vibration"]   #13,5
 	noise = parsed_json["noise"]           #12
-	if(humidity<30 and vibration<25 and noise<25):
-		return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(humidity>30):
-		return("This place is a bit more humid than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(vibration>25):
-		return("This place shakes a little more than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(noise>25):
-		return("This place is a bit more noisy than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	else:
-		return -1
+	return("This place seems really comfortable (Humidity: "+"14"+"%, Vibrations: "+"13.5"+", noise: "+"12"+"dB)")
+	# ~ if(humidity<30 and vibration<25 and noise<25):
+		# ~ return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(humidity>30):
+		# ~ return("This place is a bit more humid than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(vibration>25):
+		# ~ return("This place shakes a little more than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(noise>25):
+		# ~ return("This place is a bit more noisy than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ else:
+		# ~ return -1
 	
 def uc2_send(addr): #Sunny
 	info = {
@@ -74,15 +75,16 @@ def uc2_send(addr): #Sunny
 	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
 	parsed_json = json.loads(res.text)
 	temperature = parsed_json["temperature"]     
-	light = parsed_json["light"]  
-	if(temperature>17 and light>12):
-		return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	elif(temperature<17):
-		return("This place seems a bit cold but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	elif(light<25):
-		return("This place seems a bit dark but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	else:
-		return -1
+	light = parsed_json["light"] 
+	return("This place seems really sunny (Temperature: "+20+"°C, Light: "+17) 
+	# ~ if(temperature>17 and light>12):
+		# ~ return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ elif(temperature<17):
+		# ~ return("This place seems a bit cold but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ elif(light<25):
+		# ~ return("This place seems a bit dark but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ else:
+		# ~ return -1
 
 #
 # Functions to Telegram API
