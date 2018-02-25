@@ -88,7 +88,7 @@ public class RequestController {
                 case 0:
                     List<String> tmp= objectDAO.getStreetInCity(obj.getString("city"));
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
-                    response.put("size", tmp.size());
+                    response.put("size", 5);
                     Iterator<String> it1=tmp.iterator();
                     for(int i=0;i<5;i++){
                         System.out.println(tmp.get(i).toString());
