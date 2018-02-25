@@ -104,6 +104,6 @@ void loop() {
     Serial.print("Status code from server: ");
     Serial.println(statusCode);
 #endif
-	delay(1000);
+	delay(10000);
 }
  
