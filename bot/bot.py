@@ -26,6 +26,7 @@ URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
 # Solve the use cases
 #
 def uc0_send(city):
+	print("use case 0")
 	info = {
 		"usecase": 0,
 		"city": city
@@ -39,6 +40,7 @@ def uc0_send(city):
 	return(parsed_json["street"], parsed_json["site"])
 	
 def uc1_send(addr): # Confort
+	print("use case 1")
 	info = {
 		"usecase": 1,
 		"house": addr
