@@ -90,11 +90,16 @@ public class RequestController {
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     
                     Iterator<String> it1=tmp.iterator();
-                    if(obj.getString("city")=="st gallen"){
+                    if(obj.getString("city")=="st gallen"){ //for the Demo
                         response.put("size", 6);
                         response.append("streets", objectDAO.findOneS(1));
                         response.append("urls", objectDAO.findOneU(1));
-
+                        response.append("streets", "St. Leonhard-Str. 39");
+                        response.append("urls", "");
+                        response.append("streets", "Bernhardswiesweg 6");
+                        response.append("urls", "");
+                        response.append("streets", "Zürcherstr. 464");
+                        response.append("urls", "");
                     }else {
                         response.put("size", 5);
                     }
