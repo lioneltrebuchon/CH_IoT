@@ -90,7 +90,7 @@ public class RequestController {
                     List<String> tmp2= objectDAO.getUrlInCity(obj.getString("city"));
                     response.put("size", tmp.size());
                     Iterator<String> it1=tmp.iterator();
-                    for(int i=0;i<tmp.size();i++){
+                    for(int i=0;i<5;i++){
                         System.out.println(tmp.get(i).toString());
                         response.append("streets",tmp.get(i));
                         response.append("urls",tmp2.get(i));
