@@ -16,8 +16,9 @@ LOOPTIMEOUT = 1 # in seconds
 # ~ URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
 URL_BOT = "https://api.telegram.org/bot532946635:AAEpG1sPQUajjxtduexcaQHHu9FuClKxhuY/"
 URL_API = "TODO"
-IP_ADDR = "52.14.216.215"
-LISTEN_REQUEST = "/rest/request"
+ADDR = "52.14.216.215"
+PORT = "8080"
+PATH = "/rest/request"
 URL_HOME = URL_API + "/events"
 URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
 
@@ -37,7 +38,7 @@ def uc0_send(city):
 	parsed_json = json.loads(res.text)
 	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
 	# ~ print(matrix)
-	return(parsed_json["street"], parsed_json["site"])
+	return(parsed_json["streets"], parsed_json["urls"])
 	
 def uc1_send(addr): # Confort
 	print("use case 1")
@@ -157,7 +158,7 @@ def main():
                     else:
                         m = len(street)
                     for k in range(0, m):
-                        send_message(str(k)+" "+street[k]+": " , chat)
+                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 city=db.wantCity(msg)
                 if(city!=False):
@@ -168,7 +169,7 @@ def main():
                     else:
                         m = len(street)
                     for k in range(0, m):
-                        send_message(str(k)+" "+street[k]+": " , chat)
+                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
