@@ -2,7 +2,7 @@
 
 class dbClassObj:
     # Abstractor for the database keys from the Centos MariaSQL
-    lst_home = ['home','homes','appart','appartment','apt','house','room','Zimmer','Wohnung']
+    lst_home = ['home','homes','appart','appartment','house','room']
     lst_zip = ['zip','PIN']
     nbrs_zip = [5]
     lst_street = ['address','adress','adresse','street','Strasse','rue']
@@ -36,7 +36,7 @@ class dbClassObj:
             return False
     
     def wantCity(self,msg):
-        if(presence(msg.lower(), self.lst_home) and presence(msg.lower(), self.lst_city)):
+        if(presence(msg.lower(), self.lst_city)):
             print("---> Want City")
             for k in range(0, len(msg.lower())):
                 if(msg.lower()[k] == 'i'):
