@@ -19,7 +19,7 @@ class dbClassObj:
 
     def wantHome(self,msg):
         if presence(msg.lower(), self.lst_home):
-			print("---> Want Home")
+            print("---> Want Home")
             return True
         else:
             return False
