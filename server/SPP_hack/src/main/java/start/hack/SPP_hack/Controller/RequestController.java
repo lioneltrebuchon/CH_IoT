@@ -98,7 +98,7 @@ public class RequestController {
                         response.append("urls", "https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website");
                         response.append("streets", "Bernhardswiesweg 6");
                         response.append("urls", "https://www.mywincasa.ch/go/rent/28346116-2fb7-4d3e-a3cf-8dfe350db14a?utm_campaign=idx&utm_source=owp&utm_medium=website");
-                        response.append("streets", "Zürcherstr. 464");
+                        response.append("streets", "Zurcherstr. 464");
                         response.append("urls", "https://www.mywincasa.ch/go/rent/e8aed698-56e3-4768-952d-f061e3cc49df?utm_campaign=idx&utm_source=owp&utm_medium=website");
                     //}else {
                     //    response.put("size", 5);
