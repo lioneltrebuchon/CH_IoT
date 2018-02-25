@@ -38,7 +38,7 @@ def uc0_send(city):
 	parsed_json = json.loads(res.text)
 	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
 	# ~ print(matrix)
-	return(parsed_json["street"], parsed_json["site"])
+	return(parsed_json["streets"], parsed_json["urls"])
 	
 def uc1_send(addr): # Confort
 	print("use case 1")
