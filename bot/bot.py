@@ -166,7 +166,7 @@ def main():
                 city=db.wantCity(msg)
                 if(city!=False):
                     (street, site) = uc0_send(city)
-                    send_message("Here are some alvailable properties near"+city+":", chat)
+                    send_message("Here are some available properties near"+city+":", chat)
                     # ~ if(len(street)>5):
                         # ~ m = 5
                     # ~ else:
@@ -174,10 +174,10 @@ def main():
                     # ~ for k in range(0, 4):
                         # ~ send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("1: Dufourstrasse, 50: http://live.starthack.ch", chat)
-                    send_message("1: St. Leonhard-Str. 39: https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
-                    send_message("1: Bernhardswiesweg 6: https://www.mywincasa.ch/go/rent/e8aed698-56e3-4768-952d-f061e3cc49df?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
+                    send_message("2: St. Leonhard-Str. 39: https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
+                    send_message("3: Bernhardswiesweg 6: https://www.mywincasa.ch/go/rent/e8aed698-56e3-4768-952d-f061e3cc49df?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
-                    time.sleep(5)
+                    time.sleep(6)
                     send_message("Good choice, that's a really nice place", chat)
                     send_message("What would you like to know mor about this place", chat)
                 elif db.wantHome(msg):
