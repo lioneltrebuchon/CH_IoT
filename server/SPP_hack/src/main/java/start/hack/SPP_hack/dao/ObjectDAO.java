@@ -12,8 +12,12 @@ import org.springframework.data.repository.query.Param;
 import start.hack.SPP_hack.Model.Object;
 
 public interface ObjectDAO extends CrudRepository<Object, Integer>{
-    @Query(value="SELECT url FROM object WHERE object.object_city=:city ORDER BY object.object_street",nativeQuery = true)
+    @Query(value="SELECT url FROM object WHERE object.object_city=:city ORDER BY object.index_object",nativeQuery = true)
     List<String> getUrlInCity(@Param("city") String city);
-    @Query(value="SELECT object_street FROM object WHERE object.object_city=:city ORDER BY object.object_street",nativeQuery = true)
+    @Query(value="SELECT object_street FROM object WHERE object.object_city=:city ORDER BY object.index_object",nativeQuery = true)
     List<String> getStreetInCity(@Param("city") String city);
+     @Query(value="SELECT object_street FROM object WHERE object.index_object=:index",nativeQuery = true)
+    List<String> findOneS(@Param("index") int index);
+    @Query(value="SELECT url FROM object WHERE object.index_object=:index",nativeQuery = true)
+    List<String> findOneU(@Param("index") int index);
 }
