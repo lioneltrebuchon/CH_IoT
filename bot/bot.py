@@ -179,7 +179,7 @@ def main():
                     send_message("What is the number of the place number are you interrested in:", chat)
                     time.sleep(5)
                     send_message("Good choice, that's a really nice place", chat)
-                     send_message("What would you like to know mor about this place", chat)
+                    send_message("What would you like to know mor about this place", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
                 elif db.wantSecure(msg):
