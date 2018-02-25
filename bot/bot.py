@@ -16,8 +16,9 @@ LOOPTIMEOUT = 1 # in seconds
 # ~ URL_BOT = "https://api.telegram.org/bot433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg/"
 URL_BOT = "https://api.telegram.org/bot532946635:AAEpG1sPQUajjxtduexcaQHHu9FuClKxhuY/"
 URL_API = "TODO"
-IP_ADDR = "52.14.216.215"
-LISTEN_REQUEST = "/rest/request"
+ADDR = "52.14.216.215"
+PORT = "8080"
+PATH = "/rest/request"
 URL_HOME = URL_API + "/events"
 URL_HOME_LIST = URL_HOME + "/events?sort=-_time_start"
 
