@@ -103,11 +103,11 @@ public class RequestController {
                     }else {
                         response.put("size", 5);
                     }
-                    for(int i=0;i<5;i++){
+                    /*for(int i=0;i<5;i++){
                         System.out.println(tmp.get(i).toString());
                         response.append("streets",tmp.get(i));
                         response.append("urls",tmp2.get(i));
-                    }
+                    }*/
                     break;
                 case 1:
                     List<Float> tmpH= valueDAO.getValueOf("Humidity");
