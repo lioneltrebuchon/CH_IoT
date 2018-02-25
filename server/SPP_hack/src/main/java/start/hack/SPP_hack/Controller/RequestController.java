@@ -1,8 +1,14 @@
 package start.hack.SPP_hack.Controller;
 
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,5 +142,45 @@ public class RequestController {
                     break;
             }
         return response.toString();
+    }
+    @RequestMapping(method = RequestMethod.POST,path="/uploadXls")
+    public void fill(){
+        Workbook workbook = null;
+        try {
+
+            workbook = Workbook.getWorkbook(new File("./Exemple1.xls")); // enregistrer le fi+chier en format Excel 97-2003
+            Sheet sheet = workbook.getSheet(0); // lire la sheet Tabelle1 du fichier Excel
+            Object tmp = new Object();
+          for(int i= 4; i< sheet.getRows(); i++) {
+                Cell cell1 = sheet.getCell(2, i);
+                Cell cell2 = sheet.getCell(8, i);
+                Cell cell3 = sheet.getCell(9, i);
+                Cell cell4 = sheet.getCell(10, i);
+                Cell cell5 = sheet.getCell(67, i);
+                //System.out.println("Adress:" + "" + cell2.getContents() + "," + cell3.getContents() + " " + cell4.getContents());
+                //System.out.println("Link:" + "" + cell5.getContents());
+
+              try {
+                  tmp.setObject_category(cell1.getContents());
+                  tmp.setObject_street(cell2.getContents());
+                  tmp.setObject_zip(cell3.getContents());
+                  tmp.setObject_city(cell4.getContents());
+                  tmp.setUrl(cell5.getContents());
+                  objectDAO.save(tmp);
+               }catch (Exception e){}
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BiffException e) {
+            e.printStackTrace();
+        } finally {
+
+            if (workbook != null) {
+                workbook.close();
+            }
+
+        } 
+    
     }
 }
