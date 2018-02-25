@@ -49,7 +49,7 @@ def uc1_send(addr): # Confort
 		"house": addr
 		}
 	print("To be sent: "+str(info))
-	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
 	parsed_json = json.loads(res.text)
 	humidity = parsed_json["humidity"]     #25
 	vibration = parsed_json["vibration"]   #13,5
@@ -72,7 +72,7 @@ def uc2_send(addr): #Sunny
 		"city": city
 		}
 	print("To be sent: "+str(info))
-	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
 	parsed_json = json.loads(res.text)
 	temperature = parsed_json["temperature"]     
 	light = parsed_json["light"] 
