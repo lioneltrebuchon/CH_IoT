@@ -38,6 +38,8 @@ def uc0_send(city):
 	parsed_json = json.loads(res.text)
 	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
 	# ~ print(matrix)
+	print(parsed_json["streets"])
+	print(parsed_json["urls"])
 	return(parsed_json["streets"], parsed_json["urls"])
 	
 def uc1_send(addr): # Confort
@@ -158,7 +160,7 @@ def main():
                     else:
                         m = len(street)
                     for k in range(0, 5):
-                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
+                        send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 city=db.wantCity(msg)
                 if(city!=False):
@@ -169,7 +171,7 @@ def main():
                     else:
                         m = len(street)
                     for k in range(0, 5):
-                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
+                        send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
