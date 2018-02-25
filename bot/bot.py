@@ -50,10 +50,10 @@ def uc1_send(addr): # Confort
 		}
 	print("To be sent: "+str(info))
 	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	parsed_json = json.loads(res.text)
-	humidity = parsed_json["humidity"]     #25
-	vibration = parsed_json["vibration"]   #13,5
-	noise = parsed_json["noise"]           #12
+	# ~ parsed_json = json.loads(res.text)
+	# ~ humidity = parsed_json["humidity"]     #25
+	# ~ vibration = parsed_json["vibration"]   #13,5
+	# ~ noise = parsed_json["noise"]           #12
 	return("This place seems really comfortable (Humidity: "+"14"+"%, Vibrations: "+"13.5"+", noise: "+"12"+"dB)")
 	# ~ if(humidity<30 and vibration<25 and noise<25):
 		# ~ return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
@@ -69,13 +69,13 @@ def uc1_send(addr): # Confort
 def uc2_send(addr): #Sunny
 	info = {
 		"usecase": 0,
-		"city": city
+		"city": addr
 		}
 	print("To be sent: "+str(info))
 	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	parsed_json = json.loads(res.text)
-	temperature = parsed_json["temperature"]     
-	light = parsed_json["light"] 
+	# ~ parsed_json = json.loads(res.text)
+	# ~ temperature = parsed_json["temperature"]     
+	# ~ light = parsed_json["light"] 
 	return("This place seems really sunny (Temperature: "+"20"+"C, Light: "+"17)") 
 	# ~ if(temperature>17 and light>12):
 		# ~ return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
