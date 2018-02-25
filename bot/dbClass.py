@@ -26,7 +26,7 @@ class dbClassObj:
 	
     def wantHomeAndCity(self,msg):
         if(presence(msg.lower(), self.lst_home) and presence(msg.lower(), self.lst_city)):
-			print("---> Want HomeCity")
+            print("---> Want HomeCity")
             for k in range(0, len(msg.lower())):
                 if(msg.lower()[k] == 'i'):
                     return msg[k+3::]
@@ -37,21 +37,21 @@ class dbClassObj:
            
     def wantSecure(self, msg):
         if(presence(msg.lower(), self.lst_secure)):
-			print("---> Want secure")
+            print("---> Want secure")
             return True
         else:
             return False
     
     def wantComfortable(self, msg):
         if(presence(msg.lower(), self.lst_comfortable)):
-			print("---> Want comfort")
+            print("---> Want comfort")
             return True
         else:
             return False
 			
     def wantSunny(self, msg):
         if(presence(msg.lower(), self.lst_sunny)):
-			print("---> Want sunny")
+            print("---> Want sunny")
             return True
         else:
             return False
