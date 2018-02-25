@@ -34,6 +34,17 @@ class dbClassObj:
                     return msg[k+9::] 
         else:
             return False
+    
+    def wantCity(self,msg):
+        if(presence(msg.lower(), self.lst_home) and presence(msg.lower(), self.lst_city)):
+            print("---> Want City")
+            for k in range(0, len(msg.lower())):
+                if(msg.lower()[k] == 'i'):
+                    return msg[k+3::]
+                elif(msg.lower()[k] == 'c'):
+                    return msg[k+9::] 
+        else:
+            return False
            
     def wantSecure(self, msg):
         if(presence(msg.lower(), self.lst_secure)):

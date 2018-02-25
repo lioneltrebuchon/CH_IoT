@@ -159,6 +159,17 @@ def main():
                     for k in range(0, m):
                         send_message(str(k)+" "+street[k]+": " , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
+                city=db.wantCity(msg)
+                if(city!=False):
+                    (street, site) = uc0_send(city)
+                    send_message("Here are some alvailable properties near"+city+":", chat)
+                    if(len(street)>5):
+                        m = 5
+                    else:
+                        m = len(street)
+                    for k in range(0, m):
+                        send_message(str(k)+" "+street[k]+": " , chat)
+                    send_message("What is the number of the place number are you interrested in:", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
                 elif db.wantSecure(msg):
