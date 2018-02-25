@@ -196,7 +196,7 @@ def main():
                      re = uc2_send(current_addr)
                      send_message(re, chat)
                 # ~ elif db.houseNumber(msg):
-                     current_addr = street[int(msg)]
+                     # ~ current_addr = street[int(msg)]
                      # ~ send_message("Good choice, that's a really nice place", chat)
                      # ~ send_message("What would you like to know mor about this place", chat)
                 # ~ elif db.wantZIP(msg):
