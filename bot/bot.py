@@ -76,7 +76,7 @@ def uc2_send(addr): #Sunny
 	parsed_json = json.loads(res.text)
 	temperature = parsed_json["temperature"]     
 	light = parsed_json["light"] 
-	return("This place seems really sunny (Temperature: "+"20"+"°C, Light: "+"17)") 
+	return("This place seems really sunny (Temperature: "+"20"+"C, Light: "+"17)") 
 	# ~ if(temperature>17 and light>12):
 		# ~ return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
 	# ~ elif(temperature<17):
