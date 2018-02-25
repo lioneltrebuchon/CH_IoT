@@ -3,7 +3,7 @@ import urllib
 from requests import get
 from datetime import datetime, timedelta
 from dateutil import tz
-from textblob import TextBlob
+# ~ from textblob import TextBlob
 import time
 import logging
 import json
@@ -107,7 +107,8 @@ def get_last_update_id(updates):
 
 def send_message(text, chat_id):
     # text = urllib.parse.quote_plus(text)
-    url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
+    # ~ url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
+    url = URL_BOT + "sendMessage?&text={}&chat_id={}".format(text, chat_id)
     get(url)
 
 # ~ def get_home(indexDevice):
@@ -168,14 +169,14 @@ def main():
                 city=db.wantCity(msg)
                 if(city!=False):
                     (street, site) = uc0_send(city)
-                    send_message("Here are some available properties near"+city+":", chat)
+                    send_message("Here are some available properties near "+city+":", chat)
                     # ~ if(len(street)>5):
                         # ~ m = 5
                     # ~ else:
                         # ~ m = len(street)
                     # ~ for k in range(0, 4):
                         # ~ send_message(str(k)+" "+street[k]+": "+site[k] , chat)
-                    send_message("1: Dufourstrasse, 50: http://live.starthack.ch", chat)
+                    send_message("1: Dufourstrasse, 50: http://starthack.ch", chat)
                     time.sleep(1)
                     send_message("2: St. Leonhard-Str. 39: https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
                     time.sleep(1)
