@@ -159,7 +159,8 @@ def main():
                         m = 5
                     else:
                         m = len(street)
-                    for k in range(0, m):
+                  
+                    for k in range(0, 4):
                         send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 city=db.wantCity(msg)
@@ -170,7 +171,7 @@ def main():
                         m = 5
                     else:
                         m = len(street)
-                    for k in range(0, m):
+                    for k in range(0, 4):
                         send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 elif db.wantHome(msg):
