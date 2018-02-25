@@ -152,6 +152,7 @@ public class RequestController {
             Sheet sheet = workbook.getSheet(0); // lire la sheet Tabelle1 du fichier Excel
             Object tmp = new Object();
           for(int i= 4; i< sheet.getRows(); i++) {
+              tmp=new Object();
                 Cell cell1 = sheet.getCell(2, i);
                 Cell cell2 = sheet.getCell(8, i);
                 Cell cell3 = sheet.getCell(9, i);
