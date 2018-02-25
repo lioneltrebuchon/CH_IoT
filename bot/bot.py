@@ -193,10 +193,10 @@ def main():
                 elif db.wantSunny(msg):
                      re = uc2_send(current_addr)
                      send_message(re, chat)
-                elif db.houseNumber(msg):
-                     # ~ current_addr = street[int(msg)]
-                     send_message("Good choice, that's a really nice place", chat)
-                     send_message("What would you like to know mor about this place", chat)
+                # ~ elif db.houseNumber(msg):
+                     current_addr = street[int(msg)]
+                     # ~ send_message("Good choice, that's a really nice place", chat)
+                     # ~ send_message("What would you like to know mor about this place", chat)
                 # ~ elif db.wantZIP(msg):
                     # ~ send_message("recognized zip", chat)
                 # ~ elif db.wantStreet(msg):
