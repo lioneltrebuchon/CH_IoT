@@ -28,9 +28,9 @@ public class ExcelRead {
                 //System.out.println("Link:" + "" + cell5.getContents());
 
                String SQL = "INSERT INTO object_category VALUES("+cell1.getContents()+","+new String(cell2.getContents().getBytes(), "UTF-8")+","+cell3.getContents()+","+new String(cell4.getContents().getBytes(), "UTF-8")+","+cell5.getContents()+")";
-              // try {
-                   databaseManager.insert(SQL);
-               //}catch (Exception e){}
+              try {
+                   databaseManager.update(SQL);
+               }catch (Exception e){}
             }
 
         } catch (IOException e) {
