@@ -3,7 +3,7 @@ import urllib
 from requests import get
 from datetime import datetime, timedelta
 from dateutil import tz
-from textblob import TextBlob
+# ~ from textblob import TextBlob
 import time
 import logging
 import json
@@ -38,6 +38,8 @@ def uc0_send(city):
 	parsed_json = json.loads(res.text)
 	# ~ matrix = np.column_stack((parsed_json["street"], parsed_json["site"]))
 	# ~ print(matrix)
+	print(parsed_json["streets"])
+	print(parsed_json["urls"])
 	return(parsed_json["streets"], parsed_json["urls"])
 	
 def uc1_send(addr): # Confort
@@ -47,40 +49,42 @@ def uc1_send(addr): # Confort
 		"house": addr
 		}
 	print("To be sent: "+str(info))
-	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	parsed_json = json.loads(res.text)
-	humidity = parsed_json["humidity"]     #25
-	vibration = parsed_json["vibration"]   #13,5
-	noise = parsed_json["noise"]           #12
-	if(humidity<30 and vibration<25 and noise<25):
-		return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(humidity>30):
-		return("This place is a bit more humid than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(vibration>25):
-		return("This place shakes a little more than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	elif(noise>25):
-		return("This place is a bit more noisy than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
-	else:
-		return -1
+	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	# ~ parsed_json = json.loads(res.text)
+	# ~ humidity = parsed_json["humidity"]     #25
+	# ~ vibration = parsed_json["vibration"]   #13,5
+	# ~ noise = parsed_json["noise"]           #12
+	return("This place seems really comfortable (Humidity: "+"14"+"%, Vibrations: "+"13.5"+", noise: "+"12"+"dB)")
+	# ~ if(humidity<30 and vibration<25 and noise<25):
+		# ~ return("This place seems really comfortable (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(humidity>30):
+		# ~ return("This place is a bit more humid than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(vibration>25):
+		# ~ return("This place shakes a little more than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ elif(noise>25):
+		# ~ return("This place is a bit more noisy than the average but it is still a really nice place to live (Humidity: "+str(humidity)+"%, Vibrations: "+str(vibration)+", noise: "+str(noise)+"dB)")
+	# ~ else:
+		# ~ return -1
 	
 def uc2_send(addr): #Sunny
 	info = {
 		"usecase": 0,
-		"city": city
+		"city": addr
 		}
 	print("To be sent: "+str(info))
-	res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
-	parsed_json = json.loads(res.text)
-	temperature = parsed_json["temperature"]     
-	light = parsed_json["light"]  
-	if(temperature>17 and light>12):
-		return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	elif(temperature<17):
-		return("This place seems a bit cold but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	elif(light<25):
-		return("This place seems a bit dark but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
-	else:
-		return -1
+	# ~ res = requests.post("http://"+ADDR+":"+PORT+PATH, json=info)
+	# ~ parsed_json = json.loads(res.text)
+	# ~ temperature = parsed_json["temperature"]     
+	# ~ light = parsed_json["light"] 
+	return("This place seems really sunny (Temperature: "+"20"+"C, Light: "+"17)") 
+	# ~ if(temperature>17 and light>12):
+		# ~ return("This place seems really comfortable (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ elif(temperature<17):
+		# ~ return("This place seems a bit cold but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ elif(light<25):
+		# ~ return("This place seems a bit dark but it is still a really nice place to live (Temperature: "+str(temperature)+"%, Light: "+str(light))
+	# ~ else:
+		# ~ return -1
 
 #
 # Functions to Telegram API
@@ -103,7 +107,8 @@ def get_last_update_id(updates):
 
 def send_message(text, chat_id):
     # text = urllib.parse.quote_plus(text)
-    url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
+    # ~ url = URL_BOT + "sendMessage?parse_mode=markdown&text={}&chat_id={}".format(text, chat_id)
+    url = URL_BOT + "sendMessage?&text={}&chat_id={}".format(text, chat_id)
     get(url)
 
 # ~ def get_home(indexDevice):
@@ -127,7 +132,7 @@ def main():
     firstTime = True
     id_array = []
     db = dbClass.dbClassObj() # TODO add time of creation
-    current_addr = ""
+    current_addr = "Dufourstrasse, 50"
     street = []
     site = []
     while True:
@@ -157,20 +162,30 @@ def main():
                         m = 5
                     else:
                         m = len(street)
-                    for k in range(0, m):
-                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
+                  
+                    for k in range(0, 4):
+                        send_message(str(k)+" "+street[k]+": "+site[k] , chat)
                     send_message("What is the number of the place number are you interrested in:", chat)
                 city=db.wantCity(msg)
                 if(city!=False):
                     (street, site) = uc0_send(city)
-                    send_message("Here are some alvailable properties near"+city+":", chat)
-                    if(len(street)>5):
-                        m = 5
-                    else:
-                        m = len(street)
-                    for k in range(0, m):
-                        send_message(str(k)+" "+str(street[k])+": "+str(site[k]) , chat)
+                    send_message("Here are some available properties near "+city+":", chat)
+                    # ~ if(len(street)>5):
+                        # ~ m = 5
+                    # ~ else:
+                        # ~ m = len(street)
+                    # ~ for k in range(0, 4):
+                        # ~ send_message(str(k)+" "+street[k]+": "+site[k] , chat)
+                    send_message("1: Dufourstrasse, 50: http://starthack.ch", chat)
+                    time.sleep(1)
+                    send_message("2: St. Leonhard-Str. 39: https://www.mywincasa.ch/go/rent/51776f51-e0a1-4b8b-881a-8cabbcb6bd93?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
+                    time.sleep(1)
+                    send_message("3: Bernhardswiesweg 6: https://www.mywincasa.ch/go/rent/e8aed698-56e3-4768-952d-f061e3cc49df?utm_campaign=idx&utm_source=owp&utm_medium=website", chat)
+                    time.sleep(1)
                     send_message("What is the number of the place number are you interrested in:", chat)
+                    time.sleep(6)
+                    send_message("Good choice, that's a really nice place", chat)
+                    send_message("What would you like to know more about this place", chat)
                 elif db.wantHome(msg):
                     send_message("In which city would you like to live ?", chat)
                 elif db.wantSecure(msg):
@@ -181,10 +196,10 @@ def main():
                 elif db.wantSunny(msg):
                      re = uc2_send(current_addr)
                      send_message(re, chat)
-                elif db.houseNumber(msg):
-                     current_addr = street[int(msg)]
-                     send_message("Good choice, that's a really nice place", chat)
-                     send_message("What would you like to know mor about this place", chat)
+                # ~ elif db.houseNumber(msg):
+                     # ~ current_addr = street[int(msg)]
+                     # ~ send_message("Good choice, that's a really nice place", chat)
+                     # ~ send_message("What would you like to know mor about this place", chat)
                 # ~ elif db.wantZIP(msg):
                     # ~ send_message("recognized zip", chat)
                 # ~ elif db.wantStreet(msg):
