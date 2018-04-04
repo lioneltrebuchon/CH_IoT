@@ -1,8 +1,5 @@
--# Let's try to push often and regularly.
-
 # Access to server
 
-- Ask our team for the key.
 - Linux:
 	- Use OpenSSH
 - Windows: 
@@ -10,7 +7,6 @@
 
 # Bot
 
-- Use this token to access the HTTP API: 433042847:AAGUrcfu9FPgwd942dvFUiidG45FuFzoRpg
 - Install telegram API for Python: pip install python-telegram-bot --upgrade
 
 ## Dependencies
